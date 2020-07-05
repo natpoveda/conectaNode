@@ -3,15 +3,17 @@ const proyectoControl = require('../Control/proyectoControl');
 
 var api = express.Router();
 
-//Rutas agregar Donacion
+//Rutas agregar Proyecto
 api.post("/", proyectoControl.crearProyecto);
-//Rutas consultar Donacion
+//Rutas consultar Proyecto
 api.get("/", proyectoControl.obtenerProyecto);
-//Rutas consultar Donacion by ID
+//Rutas consultar Proyecto by ID
 api.get("/:id", proyectoControl.encontrarProyectoByID);
-//Rutas actualizar Donacion
+//Rutas actualizar Proyecto
 api.put("/:id", proyectoControl.actualizarProyecto);
-//Rutas eliminar Donacion
+//Rutas eliminar Proyecto
 api.delete("/:id", proyectoControl.eliminarProyecto);
+//Rutas consultar Proyecto by IDSeccion
+api.get("/secc/:idSec", proyectoControl.obtenerProyectoByIdSeccion);
 
 module.exports = api;

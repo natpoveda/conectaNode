@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const ContenidoSchema = new Schema({
+const ProyectoSchema = new Schema({
   titulo: String,
   descripcion: String,
   urlImage: String,
@@ -11,4 +11,4 @@ const ContenidoSchema = new Schema({
   seccion: String
 });
 
-module.exports = mongoose.model("Contenido", ContenidoSchema);
+module.exports = mongoose.model("Proyecto", ProyectoSchema);

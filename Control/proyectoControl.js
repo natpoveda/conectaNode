@@ -1,5 +1,4 @@
 const Proyecto = require("../Modelo/proyectos");
-//const { param } = require("../Server/app");
 
 // Crear Proyecto
 
@@ -34,7 +33,7 @@ function crearProyecto(req, res) {
   })
 }
 
-//Obtener Proyecto
+//Obtener Proyectos
 
 function obtenerProyecto(req, res){
   Proyecto.find((err,proyectosEncontrados)=>{
@@ -122,6 +121,27 @@ function eliminarProyecto(req, res){
     });
   }
 
+// Trae los proyectos por el id de Seccion
+
+  function obtenerProyectoByIdSeccion(req, res){
+    var idSec =  req.params.idSec
+    Proyecto.find({seccion: idSec}, (err,proyectosEncontrados)=>{
+      if(err){
+          res.status(500).send({message:"Error del servidor"});
+        } else {
+            if(!proyectosEncontrados){
+              res.status(200).send({message:"No fue posible obtener el registro de estos proyectos"});
+            } else {
+              res.status(200).send({
+                  status:"Proyectos Encontrados",
+                  proyecto: proyectosEncontrados
+              });
+            }
+        }
+  
+    });
+  }
+
 //Exportamos las funciones
 
 module.exports = {
@@ -129,5 +149,6 @@ module.exports = {
     obtenerProyecto,
     actualizarProyecto,
     eliminarProyecto,
-    encontrarProyectoByID
+    encontrarProyectoByID,
+    obtenerProyectoByIdSeccion
 }

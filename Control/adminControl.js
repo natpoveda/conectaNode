@@ -98,11 +98,53 @@ function eliminarAdmin(req, res){
     });
   }
 
+
+function login(req, res){
+  var params = req.body;
+
+    Admin.findOne({ email: params.email } , (error, userLogged) =>{
+      if(error){
+        
+        res.send({
+          message: "Errror en el srvidor",
+          statusCode: 500
+        })
+
+      }else{
+
+          if(!userLogged) {
+            res.send({
+              message: "El usuario no existe",
+              statusCode: 400
+            })
+
+          }else{
+
+            if(userLogged.pass == params.pass){
+              res.send({
+                message:"Bienvenido",
+                statusCode: 200
+              })
+            }else{
+              res.send({
+                message:"No coincide la contraseña",
+                statusCode: 401
+              })
+            }
+
+          }  
+
+      }
+
+  })
+
+}   
 //Exportamos las funciones
 
 module.exports = {
     crearAdmin,
     obtenerAdmin,
     actualizarAdmin,
-    eliminarAdmin
+    eliminarAdmin,
+    login
 }

@@ -3,15 +3,15 @@ const seccionControl = require('../Control/seccionControl');
 
 var api = express.Router();
 
-//Rutas agregar Donacion
+//Rutas agregar Seccion
 api.post("/", seccionControl.crearSeccion);
-//Rutas consultar Donacion
+//Rutas consultar Seccion
 api.get("/", seccionControl.obtenerSeccion);
-//Rutas consultar Donacion by ID
+//Rutas consultar Seccion by ID
 api.get("/:id", seccionControl.encontrarSeccionByID);
-//Rutas actualizar Donacion
+//Rutas actualizar Seccion
 api.put("/:id", seccionControl.actualizarSeccion);
-//Rutas eliminar Donacion
+//Rutas eliminar Seccion
 api.delete("/:id", seccionControl.actualizarSeccion);
 
 module.exports = api;
