@@ -8,7 +8,7 @@ function crearDonacion(req, res) {
   var parametros = req.body;
 
   donacion.nombre = parametros.nombre;
-  donacion.apellidos = parametros.apellidos;
+  donacion.apellido = parametros.apellido;
   donacion.genero = parametros.genero;
   donacion.cedula = parametros.cedula;
   donacion.edad = parametros.edad;
