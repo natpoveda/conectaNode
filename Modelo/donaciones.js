@@ -11,8 +11,8 @@ const DonacionSchema = new Schema({
   email: String,
   tel: String,
   pais: String,
-  rid: Number,
-  pid: Number,
+  rid: String,
+  pid: String,
   monto: Number,
   tipoPago: String
 });

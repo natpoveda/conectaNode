@@ -17,7 +17,6 @@ function crearDonacion(req, res) {
   donacion.tel = parametros.tel;
   donacion.pais = parametros.pais;
   donacion.pid = parametros.pid;
-  donacion.rid = parametros.rid;
   donacion.monto = parametros.monto;
   donacion.tipoPago = parametros.tipoPago;
 

@@ -28,7 +28,8 @@ function crearUsuario(req, res) {
           } else {
             res.status(200).send({
                 status:"Usuario Creado",
-                usuario: usuarioNuevo
+                usuario: usuarioNuevo,
+                statusCode: 200
             });
           }
       }

@@ -12,7 +12,7 @@ const UsuarioSchema = new Schema({
   tel: String,
   pais: String,
   rid: Number,
-  pid: Number
+  pid: String
 });
 
 module.exports = mongoose.model("Usuario", UsuarioSchema);

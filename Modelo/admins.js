@@ -10,7 +10,7 @@ const AdminSchema = new Schema({
   email: String,
   pass: String,
   tel: String,
-  rid: Number
+  rid: String
 });
 
 module.exports = mongoose.model("Admin", AdminSchema);
