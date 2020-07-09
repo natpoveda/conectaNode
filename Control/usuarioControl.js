@@ -8,7 +8,7 @@ function crearUsuario(req, res) {
   var parametros = req.body;
 
   usuario.nombre = parametros.nombre;
-  usuario.apellidos = parametros.apellidos;
+  usuario.apellido = parametros.apellido;
   usuario.genero = parametros.genero;
   usuario.cedula = parametros.cedula;
   usuario.edad = parametros.edad;
