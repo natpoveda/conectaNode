@@ -11,5 +11,13 @@ api.get("/", usuarioControl.obtenerUsuario);
 api.put("/:id", usuarioControl.actualizarUsuario);
 //Rutas eliminar Usuarios
 api.delete("/:id", usuarioControl.eliminarUsuario);
+// Rutas Reportes
+api.get("/reportes/:proyectoId", usuarioControl.obtenerUsuariobyProyect);
+// Rutas Reportes
+api.get("/search-name/:name", usuarioControl.obtenerUsuariobyName);
+// Rutas Reportes
+api.get("/search-byId/:uId", usuarioControl.obtenerUsuariobyId);
+
+
 
 module.exports = api;

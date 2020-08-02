@@ -14,6 +14,7 @@ function crearProyecto(req, res) {
   proyecto.donacion = parametros.donacion;
   proyecto.seccion = parametros.seccion;
   proyecto.tel = parametros.tel;
+  proyecto.fecha = Date();
   
 
   proyecto.save((err,proyectoNuevo)=>{
@@ -25,7 +26,8 @@ function crearProyecto(req, res) {
           } else {
             res.status(200).send({
                 status:"Proyecto Creado",
-                proyecto: proyectoNuevo
+                proyecto: proyectoNuevo,
+                codeStatus: 200
             });
           }
       }
@@ -123,24 +125,70 @@ function eliminarProyecto(req, res){
 
 // Trae los proyectos por el id de Seccion
 
-  function obtenerProyectoByIdSeccion(req, res){
-    var idSec =  req.params.idSec
-    Proyecto.find({seccion: idSec}, (err,proyectosEncontrados)=>{
-      if(err){
-          res.status(500).send({message:"Error del servidor"});
-        } else {
-            if(!proyectosEncontrados){
-              res.status(200).send({message:"No fue posible obtener el registro de estos proyectos"});
-            } else {
-              res.status(200).send({
-                  status:"Proyectos Encontrados",
-                  proyecto: proyectosEncontrados
-              });
-            }
-        }
+function obtenerProyectoByIdSeccion(req, res){
+  var idSec =  req.params.idSec;
+  Proyecto.find({seccion: idSec}, (err,proyectosEncontrados)=>{
+    if(err){
+        res.status(500).send({message:"Error del servidor"});
+      } else {
+          if(!proyectosEncontrados){
+            res.status(200).send({message:"No fue posible obtener el registro de estos proyectos"});
+          } else {
+            res.status(200).send({
+                status:"Proyectos Encontrados",
+                proyecto: proyectosEncontrados
+            });
+          }
+      }
+
+  });
+}
+
+// Trae los proyectos por el id de Seccion
+
+function obtenerProyectoByIdSeccionLimit(req, res){
+  console.log("params",req.params);
+  var idSec =  req.params.idSec;
+
+  Proyecto.find({seccion: idSec}, (err,proyectosEncontrados)=>{
+    if(err){
+        res.status(500).send({message:"Error del servidor"});
+      } else {
+          if(!proyectosEncontrados){
+            res.status(200).send({message:"No fue posible obtener el registro de estos proyectos"});
+          } else {
+            res.status(200).send({
+                status:"Proyectos Encontrados",
+                proyecto: proyectosEncontrados
+            });
+          }
+      }
+
+  }).limit(2);
+}
+
+
+function obtenerProyectoByTitulo(req, res){
   
-    });
-  }
+  var titulo = new RegExp(`.*${req.params.titulo}.*`,'i');
+  Proyecto.find({titulo: titulo}, (err,proyectosEncontrados)=>{
+    if(err){
+        res.status(500).send({message:"Error del servidor"});
+      } else {
+          if(!proyectosEncontrados){
+            res.status(200).send({message:"No fue posible obtener el registro de estos proyectos"});
+          } else {
+            res.status(200).send({
+                status:"Proyectos Encontrados",
+                proyecto: proyectosEncontrados
+            });
+          }
+      }
+
+  });
+}
+
+
 
 //Exportamos las funciones
 
@@ -150,5 +198,7 @@ module.exports = {
     actualizarProyecto,
     eliminarProyecto,
     encontrarProyectoByID,
-    obtenerProyectoByIdSeccion
+    obtenerProyectoByIdSeccion,
+    obtenerProyectoByIdSeccionLimit,
+    obtenerProyectoByTitulo
 }

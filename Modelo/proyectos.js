@@ -8,7 +8,8 @@ const ProyectoSchema = new Schema({
   urlVideo: String,
   tiempo: Boolean,
   donacion: Boolean,
-  seccion: String
+  seccion: String,
+  fecha: Date
 });
 
 module.exports = mongoose.model("Proyecto", ProyectoSchema);

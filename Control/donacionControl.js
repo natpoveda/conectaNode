@@ -7,6 +7,8 @@ function crearDonacion(req, res) {
   var donacion = new Donacion();
   var parametros = req.body;
 
+  console.log("parametros",parametros);
+
   donacion.nombre = parametros.nombre;
   donacion.apellido = parametros.apellido;
   donacion.genero = parametros.genero;
@@ -29,7 +31,8 @@ function crearDonacion(req, res) {
           } else {
             res.status(200).send({
                 status:"Donacion Creada",
-                donacion: donacionNueva
+                donacion: donacionNueva,
+                codeStatus: 200
             });
           }
       }
@@ -125,6 +128,28 @@ function eliminarDonacion(req, res){
     });
   }
 
+
+//Obtener Donacion
+function obtenerDonacionbyProyect(req, res){
+  
+  var proyectoId = req.params.proyectoId;
+  Donacion.find({pid: proyectoId},(err,donacionesEncontradas)=>{
+    if(err){
+        res.status(500).send({message:"Error del servidor"});
+      } else {
+          if(!donacionesEncontradas){
+            res.status(200).send({message:"No fue posible obtener el registro de Donacion por proyecto", prId: proyectoId});
+          } else {
+            res.status(200).send({
+                status:"Donaciones Encontradas",
+                donacion: donacionesEncontradas,
+                statusCode:200
+            });
+          }
+      }
+
+  });
+}
 //Exportamos las funciones
 
 module.exports = {
@@ -133,4 +158,5 @@ module.exports = {
     actualizarDonacion,
     eliminarDonacion,
     encontrarDonacionByID,
+    obtenerDonacionbyProyect
 }

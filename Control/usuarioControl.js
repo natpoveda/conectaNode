@@ -17,8 +17,9 @@ function crearUsuario(req, res) {
   usuario.tel = parametros.tel;
   usuario.pais = parametros.pais;
   usuario.pid = parametros.pid;
-  usuario.rid = parametros.rid;
+  usuario.fecha = Date();
 
+  
   usuario.save((err,usuarioNuevo)=>{
       if(err){
         res.status(500).send({message:"Error del servidor"});
@@ -38,7 +39,6 @@ function crearUsuario(req, res) {
 }
 
 //Obtener Usuario
-
 function obtenerUsuario(req, res){
   Usuario.find((err,usuariosEncontrados)=>{
     if(err){
@@ -102,6 +102,73 @@ function eliminarUsuario(req, res){
     });
   }
 
+
+
+//Obtener Usuario
+function obtenerUsuariobyProyect(req, res){
+  var proyectoId = req.params.proyectoId;
+
+  Usuario.find({pid: proyectoId},(err,usuariosEncontrados)=>{
+    if(err){
+        res.status(500).send({message:"Error del servidor"});
+      } else {
+          if(!usuariosEncontrados){
+            res.status(200).send({message:"No fue posible obtener el registro de usuario por proyecto", prId: proyectoId});
+          } else {
+            res.status(200).send({
+                status:"Usuarios Encontrado",
+                usuario: usuariosEncontrados,
+                statusCode:200
+            });
+          }
+      }
+
+  });
+}  
+
+//Obtener Usuario x nombre
+function obtenerUsuariobyName(req, res){
+
+ var name = new RegExp(`.*${req.params.name}.*`,'i');
+  Usuario.find({nombre: name},(err,usuariosEncontrados)=>{
+    if(err){
+        res.status(500).send({message:"Error del servidor"});
+      } else {
+          if(!usuariosEncontrados){
+            res.status(200).send({message:"No fue posible obtener el registro de usuario por titulo", name: name});
+          } else {
+            res.status(200).send({
+                status:"Usuarios Encontrado",
+                usuario: usuariosEncontrados,
+                statusCode:200
+            });
+          }
+      }
+
+  });
+}
+
+//Obtener Usuario x id
+function obtenerUsuariobyId(req, res){
+  console.log("uid", req.params);
+  var id = req.params.uId;
+   Usuario.find({_id: id},(err,usuariosEncontrados)=>{
+     if(err){
+         res.status(500).send({message:"Error del servidor"});
+       } else {
+           if(!usuariosEncontrados){
+             res.status(200).send({message:"No fue posible obtener el registro de usuario por titulo", name: name});
+           } else {
+             res.status(200).send({
+                 status:"Usuarios Encontrado",
+                 usuario: usuariosEncontrados,
+                 statusCode:200
+             });
+           }
+       }
+ 
+   });
+ }
 //Exportamos las funciones
 
 module.exports = {
@@ -109,4 +176,7 @@ module.exports = {
     obtenerUsuario,
     actualizarUsuario,
     eliminarUsuario,
-}
+    obtenerUsuariobyProyect,
+    obtenerUsuariobyName,
+    obtenerUsuariobyId
+  }

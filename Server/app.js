@@ -8,6 +8,7 @@ const donacionRutas = require('../Rutas/donacionRutas')
 const seccionRutas = require('../Rutas/seccionRutas')
 const adminRutas = require('../Rutas/adminRutas')
 const proyectoRutas = require('../Rutas/proyectoRutas')
+const contactanosRutas = require('../Rutas/contactanosRutas')
 // MIDDLEWARE
 app.use(express.json());
 app.use(cors());
@@ -18,5 +19,6 @@ app.use('/api/donaciones', donacionRutas);
 app.use('/api/secciones', seccionRutas);
 app.use('/api/admin', adminRutas);
 app.use('/api/proyecto', proyectoRutas);
+app.use('/api/contactanos',contactanosRutas);
 
 module.exports = app;

@@ -8,10 +8,12 @@ api.post("/", donacionControl.crearDonacion);
 //Rutas consultar Donacion
 api.get("/", donacionControl.obtenerDonacion);
 //Rutas consultar Donacion by ID
-api.get("/:id", donacionControl.encontrarDonacionByID);
+api.get("/byId/:id", donacionControl.encontrarDonacionByID);
 //Rutas actualizar Donacion
 api.put("/:id", donacionControl.actualizarDonacion);
 //Rutas eliminar Donacion
 api.delete("/:id", donacionControl.eliminarDonacion);
+//Rutas consultar Donacion by PID
+api.get("/reportes-donaciones/:proyectoId", donacionControl.obtenerDonacionbyProyect);
 
 module.exports = api;

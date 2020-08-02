@@ -8,7 +8,7 @@ function crearAdmin(req, res) {
   var parametros = req.body;
 
   admin.nombre = parametros.nombre;
-  admin.apellidos = parametros.apellidos;
+  admin.apellido = parametros.apellido;
   admin.genero = parametros.genero;
   admin.cedula = parametros.cedula;
   admin.direccion = parametros.direccion;
@@ -25,7 +25,8 @@ function crearAdmin(req, res) {
           } else {
             res.status(200).send({
                 status:"Admin Creado",
-                admin: adminNuevo
+                admin: adminNuevo,
+                statusCode: 200
             });
           }
       }

@@ -11,8 +11,8 @@ const UsuarioSchema = new Schema({
   email: String,
   tel: String,
   pais: String,
-  rid: Number,
-  pid: String
+  pid: String,
+  fecha: Date
 });
 
 module.exports = mongoose.model("Usuario", UsuarioSchema);

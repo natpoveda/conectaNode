@@ -15,5 +15,10 @@ api.put("/:id", proyectoControl.actualizarProyecto);
 api.delete("/:id", proyectoControl.eliminarProyecto);
 //Rutas consultar Proyecto by IDSeccion
 api.get("/secc/:idSec", proyectoControl.obtenerProyectoByIdSeccion);
+//Rutas consultar Proyecto by IDSeccion Limit
+api.get("/secclimit/:idSec", proyectoControl.obtenerProyectoByIdSeccionLimit);
+//Rutas consultar Proyecto by titulo
+api.get("/proyectobytitle/:titulo", proyectoControl.obtenerProyectoByTitulo);
+
 
 module.exports = api;

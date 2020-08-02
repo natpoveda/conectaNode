@@ -7,7 +7,7 @@ function crearSeccion(req, res) {
   var seccion = new Seccion();
   var parametros = req.body;
 
-  seccion.url = parametros.url;
+  seccion.urlImagen = parametros.urlImagen;
   seccion.nombre = parametros.nombre;
   seccion.descripcion = parametros.descripcion;
  
@@ -20,7 +20,8 @@ function crearSeccion(req, res) {
           } else {
             res.status(200).send({
                 status:"Seccion Creada",
-                seccion: seccionNueva
+                seccion: seccionNueva,
+                codeStatus: 200
             });
           }
       }
@@ -116,6 +117,26 @@ function eliminarSeccion(req, res){
     });
   }
 
+function encontrarSeccionByName(req, res){
+
+  console.log("Seccs", req.params);
+    var name = new RegExp(`.*${req.params.name}.*`,'i');
+    Seccion.find({nombre:name},(err,seccionesEncontradas)=>{
+        if(err){
+            res.status(500).send({message:"Error del servidor"});
+          } else {
+              if(!seccionesEncontradas){
+                res.status(200).send({message:"No fue posible obtener el registro de seccion"});
+              } else {
+                res.status(200).send({
+                    status:"Secciones Encontradas",
+                    seccion: seccionesEncontradas
+                });
+              }
+          }
+    
+      });
+}
 //Exportamos las funciones
 
 module.exports = {
@@ -124,4 +145,6 @@ module.exports = {
     actualizarSeccion,
     eliminarSeccion,
     encontrarSeccionByID,
+    encontrarSeccionByName
+
 }
